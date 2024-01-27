@@ -10,7 +10,13 @@ namespace Notes.Infrastructure.EntityConfigurations
         {
             builder.HasKey(b => b.Id);
 
-            builder.Property(b => b.Text);
+            builder.Property(b => b.Text)
+                .IsRequired();
+
+            builder.HasOne(x => x.User)
+                .WithMany(x => x.Notes)
+                .HasForeignKey(x => x.UserId)
+                .IsRequired();
 
             builder.HasMany(b => b.Tags)
                 .WithMany(x => x.Notes)

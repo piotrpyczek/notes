@@ -12,6 +12,7 @@ namespace Notes.API.Infrastructure
             services.AddAppContext();
 
             AddDbContext(services, configuration);
+            AddModules(services);
 
             return services;
         }
@@ -28,6 +29,12 @@ namespace Notes.API.Infrastructure
             {
                 options.UseNpgsql(configuration.GetConnectionString("Notes"), ConfigureSqlOptions);
             });
+        }
+
+        private static void AddModules(IServiceCollection services)
+        {
+            Queries.Bootstrap.Register(services);
+            Commands.Bootstrap.Register(services);
         }
     }
 }

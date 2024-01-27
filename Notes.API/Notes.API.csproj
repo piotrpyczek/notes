@@ -18,12 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Infrastructure\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Notes.Commands\Notes.Commands.csproj" />
     <ProjectReference Include="..\Notes.Infrastructure\Notes.Infrastructure.csproj" />
+    <ProjectReference Include="..\Notes.Queries\Notes.Queries.csproj" />
   </ItemGroup>
 
 </Project>
