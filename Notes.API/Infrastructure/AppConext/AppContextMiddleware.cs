@@ -18,8 +18,10 @@ namespace Notes.API.Infrastructure.AppConext
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var userName = context?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await GetUserAsync(userName ?? "Development");
+            var userId = context?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = userId != null
+                ? await GetUserAsync(Guid.Parse(userId))
+                : null;
 
             var session = new AppSession
             {
@@ -32,9 +34,9 @@ namespace Notes.API.Infrastructure.AppConext
             await next(context);
         }
 
-        private Task<User?> GetUserAsync(string name)
+        private Task<User?> GetUserAsync(Guid? userId)
         {
-            return dbContext.Users.FirstOrDefaultAsync(x => x.Name == name);
+            return dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
         }
     }
 }

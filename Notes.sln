@@ -3,18 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.API", "Notes.API\Notes.API.csproj", "{91BBEB12-CB3C-4406-A1B8-E97528194153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.API", "Notes.API\Notes.API.csproj", "{91BBEB12-CB3C-4406-A1B8-E97528194153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.Domain", "Notes.Domain\Notes.Domain.csproj", "{CAC3C527-C072-4A5A-88F1-A9A3B465D33E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Domain", "Notes.Domain\Notes.Domain.csproj", "{CAC3C527-C072-4A5A-88F1-A9A3B465D33E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.Commands", "Notes.Commands\Notes.Commands.csproj", "{E885AFE8-EF65-4E70-A481-48B0AD29C294}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Commands", "Notes.Commands\Notes.Commands.csproj", "{E885AFE8-EF65-4E70-A481-48B0AD29C294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.Queries", "Notes.Queries\Notes.Queries.csproj", "{E546A838-909E-4B08-A277-19B3F728D4EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Queries", "Notes.Queries\Notes.Queries.csproj", "{E546A838-909E-4B08-A277-19B3F728D4EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.Infrastructure", "Notes.Infrastructure\Notes.Infrastructure.csproj", "{5E831563-0869-474B-A314-05D51D73C4D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.Infrastructure", "Notes.Infrastructure\Notes.Infrastructure.csproj", "{5E831563-0869-474B-A314-05D51D73C4D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{1D2933F6-3CAC-4E99-82F5-0A33E559285C}"
 	ProjectSection(SolutionItems) = preProject
+		development.jwt = development.jwt
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject

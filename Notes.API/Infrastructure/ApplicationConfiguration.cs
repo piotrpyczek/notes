@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Notes.API.Infrastructure.AppConext;
 using Notes.Infrastructure;
+using Notes.Infrastructure.Configuration;
 using Notes.Infrastructure.TagResolver;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 
@@ -15,6 +19,7 @@ namespace Notes.API.Infrastructure
             AddDbContext(services, configuration);
             AddTagResolvers(services);
             AddModules(services);
+            AddAuthentication(services, configuration);
 
             return services;
         }
@@ -47,6 +52,28 @@ namespace Notes.API.Infrastructure
         {
             Queries.Bootstrap.Register(services);
             Commands.Bootstrap.Register(services);
+        }
+
+        private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+        {
+            var authenticationOptions = configuration.GetSection(AuthenticationOptions.Section).Get<AuthenticationOptions>()!;
+
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationOptions.JwtKey))
+                    };
+                });
         }
     }
 }
