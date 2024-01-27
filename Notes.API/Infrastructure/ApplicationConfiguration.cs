@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Notes.API.Infrastructure.AppConext;
 using Notes.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 
@@ -8,6 +9,8 @@ namespace Notes.API.Infrastructure
     {
         public static IServiceCollection AddApplicationConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddAppContext();
+
             AddDbContext(services, configuration);
 
             return services;

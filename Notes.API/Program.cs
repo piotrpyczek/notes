@@ -1,4 +1,5 @@
 using Notes.API.Infrastructure;
+using Notes.API.Infrastructure.AppConext;
 using Notes.API.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAppContext();
 
 app.MapControllers();
 
