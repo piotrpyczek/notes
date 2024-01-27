@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Notes.API.Infrastructure.AppConext;
 using Notes.Infrastructure;
+using Notes.Infrastructure.TagResolver;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 
 namespace Notes.API.Infrastructure
@@ -12,6 +13,7 @@ namespace Notes.API.Infrastructure
             services.AddAppContext();
 
             AddDbContext(services, configuration);
+            AddTagResolvers(services);
             AddModules(services);
 
             return services;
@@ -29,6 +31,16 @@ namespace Notes.API.Infrastructure
             {
                 options.UseNpgsql(configuration.GetConnectionString("Notes"), ConfigureSqlOptions);
             });
+        }
+
+        private static void AddTagResolvers(IServiceCollection services)
+        {
+            var catalog = new DefaultTagResolverCatalog();
+            catalog.Register(new EmailTagResolver());
+            catalog.Register(new PhoneTagResolver());
+
+            services.AddSingleton<ITagResolverCatalog>(catalog);
+            services.AddSingleton<ITagGeneratorService, DefaultTagGeneratorService>();
         }
 
         private static void AddModules(IServiceCollection services)

@@ -34,7 +34,7 @@ namespace Notes.API.Controllers
         public async Task<NoteDTO> CreateNoteAsync([FromBody] CreateNoteCommand command)
         {
             var noteId = await mediator.Send(command);
-            return null;
+            return await mediator.Send(new GetNoteByIdQuery(noteId));
         }
 
         [HttpDelete("{noteId}")]

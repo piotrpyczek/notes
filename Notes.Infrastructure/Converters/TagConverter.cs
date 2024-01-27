@@ -9,8 +9,7 @@ namespace Notes.Infrastructure.Converters
         {
             return new TagDTO
             {
-                Id = tag.Id,
-                Name = tag.Name,
+                Name = tag.Name
             };
         }
     }
