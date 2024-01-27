@@ -12,6 +12,7 @@ namespace Notes.API.Infrastructure.Database
             var logger = scope.ServiceProvider.GetService<ILogger<NotesDbContextMigration>>();
 
             new NotesDbContextMigration().Migrate(context, logger);
+            new ApplicationDataSeed(context).SeedData();
 
             return app;
         }
