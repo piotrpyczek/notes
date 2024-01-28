@@ -4,9 +4,19 @@ namespace Notes.Domain.Entities
 {
     public class Note : Entity
     {
-        public string Text { get; set; }
+        protected Note()
+        {
+        }
 
-        public DateTime? CreatedAt { get; set; }
+        public Note(string text)
+        {
+            Text = !string.IsNullOrWhiteSpace(text) ? text : throw new ArgumentNullException(nameof(text));
+            CreatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
+        }
+
+        public string Text { get; private set; }
+
+        public DateTime? CreatedAt { get; private set; }
 
         public Guid? UserId { get; set; }
         public User User { get; set; }

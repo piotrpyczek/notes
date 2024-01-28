@@ -27,10 +27,8 @@ namespace Notes.Commands.Notes.Handlers
                 .Where(x => tagNames.Contains(x.Name))
                 .ToListAsync(cancellationToken);
 
-            var note = new Note
+            var note = new Note(command.Text)
             {
-                Text = command.Text,
-                CreatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                 UserId = appContext.UserId,
                 Tags = tags
             };
