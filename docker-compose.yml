@@ -12,5 +12,8 @@ services:
     command: [ "postgres", "-c", "wal_level=logical" ]
     ports:
       - 5432:5432
-    volumes: 
-      - c:\notes\postgressData:/var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
